@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Kiểm Tra Phát Âm Tiếng Trung</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎙️ Kiểm Tra Phát Âm Tiếng Trung</h1>
+
+        <!-- Ô nhập câu mẫu -->
+        <div class="form-group">
+            <label for="referenceText">Nhập câu tiếng Trung mẫu (Reference Text):</label>
+            <input type="text" id="referenceText" value="你好" placeholder="Ví dụ: 你好">
+        </div>
+
+        <!-- Tab chuyển đổi giữa Ghi âm & Tải file -->
+        <div class="mode-tabs">
+            <button class="tab-btn active" data-target="recordSection">Ghi âm trực tiếp</button>
+            <button class="tab-btn" data-target="uploadSection">Tải file có sẵn</button>
+        </div>
+
+        <!-- Khu vực 1: Ghi âm trực tiếp -->
+        <div id="recordSection" class="input-section active">
+            <div class="recorder-section">
+                <button id="recordBtn" class="btn">
+                    <span id="btnIcon">🔴</span> <span id="btnText">Nhấn để ghi âm</span>
+                </button>
+                <div id="statusText">Sẵn sàng ghi âm...</div>
+            </div>
+        </div>
+
+        <!-- Khu vực 2: Tải file lên -->
+        <div id="uploadSection" class="input-section" style="display: none;">
+            <div class="upload-box">
+                <input type="file" id="audioFileInput" accept="audio/*,.mp3,.wav,.webm">
+                <button id="uploadBtn" class="btn" style="margin-top: 10px;">Gửi file chấm điểm</button>
+            </div>
+            <div id="uploadStatusText" style="margin-top: 10px; font-size: 0.9rem; color: #64748b;">Chọn file MP3, WAV hoặc WEBM...</div>
+        </div>
+
+        <button id="toggleResultBtn" class="btn" type="button" aria-controls="resultBox" aria-expanded="false" hidden>
+            Hiện kết quả
+        </button>
+
+        <!-- Khu vực hiển thị kết quả -->
+        <div id="resultBox" class="result-box">
+            <h3>Kết quả phân tích:</h3>
+            <div class="score-display">Độ tương đồng: <span id="similarityScore">0</span>%</div>
+            
+            <div style="font-size: 0.9rem; font-weight: 600; color: #64748b;">Chi tiết từng ký tự:</div>
+            <div id="diffContainer" class="diff-container"></div>
+            
+            <div class="meta-info">
+                <div><strong>Câu bạn đọc:</strong> <span id="recognizedText">-</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>
